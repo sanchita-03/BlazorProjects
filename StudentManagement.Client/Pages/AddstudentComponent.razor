@@ -1,0 +1,70 @@
+﻿@page "/add-student"
+@using StudentManagement.Shared
+@using StudentManagement.Client.Service
+@inject StudentService _studentService
+@inject NavigationManager navigation
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
+
+
+
+<EditForm Model="student" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="container">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+            <div class="border rounded p-4 shadow bg-white">
+                <h3>Add Student</h3>
+                @* <div class="row"> *@
+                <div >
+                    <label>FirstName:</label>
+                    <InputText @bind-Value="student.FirstName" class="form-control" />
+                    @* <ValidationMessage For="@(() => student.Name)" /> *@
+                </div>
+
+                <div >
+                    <label>LastName:</label>
+                    <InputText @bind-Value="student.LastName" class="form-control" />
+                    @* <ValidationMessage For="@(() => student.Email)" /> *@
+                </div>
+                @* </div> *@
+
+                @* <div class="row"> *@
+                <div>
+                    <label>RollNo:</label>
+                    <InputNumber @bind-Value="student.RollNo" class="form-control" />
+                    @* <ValidationMessage For="@(() => student.Age)" /> *@
+                </div>
+
+                <div>
+                    <label>Address:</label>
+                    <InputText @bind-Value="student.Address" class="form-control" />
+                    @* <ValidationMessage For="@(() => student.Age)" /> *@
+                </div>
+                @* </div> *@
+
+
+
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@if (successMessage != null)
+{
+    <p class="text-success">@successMessage</p>
+}
+
+@code {
+    private Student student = new Student();
+    private string? successMessage;
+
+    private async Task HandleValidSubmit()
+    {
+        await _studentService.AddStudent(student);
+        successMessage = "Student added successfully!";
+        navigation.NavigateTo("/student-dashboard");
+        student = new(); // Reset form
+    }
+}

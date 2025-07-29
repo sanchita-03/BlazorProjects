@@ -1,0 +1,4 @@
+C:\BlazorProjects\StudentMangementBlazor\StudentManagement\StudentManagement.Client\wwwroot\appsettings.Development.json
+C:\BlazorProjects\StudentMangementBlazor\StudentManagement\StudentManagement.Client\wwwroot\appsettings.json
+wwwroot\appsettings.Development.json
+wwwroot\appsettings.json

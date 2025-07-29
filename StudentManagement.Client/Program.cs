@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using StudentManagement.Client.Service;
 
 namespace StudentManagement.Client
 {
@@ -7,6 +8,9 @@ namespace StudentManagement.Client
         static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            //builder.RootComponents.Add<App>("#app");
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped<StudentService>();
 
             await builder.Build().RunAsync();
         }

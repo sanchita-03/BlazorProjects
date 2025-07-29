@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using StudentManagement.Client.Pages;
 using StudentManagement.Components;
+using StudentManagement.Contract;
+using StudentManagement.Data;
+using StudentManagement.Repository;
 
 namespace StudentManagement
 {
@@ -10,14 +15,23 @@ namespace StudentManagement
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<StudentDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnString")));
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
             builder.Services.AddRazorComponents()
                 .AddInteractiveWebAssemblyComponents();
+            builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+            builder.Services.AddCors();
+            builder.Services.AddControllers();
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseSwagger();
+                app.UseSwaggerUI();
                 app.UseWebAssemblyDebugging();
             }
             else
@@ -27,7 +41,14 @@ namespace StudentManagement
                 app.UseHsts();
             }
 
+            app.UseCors(policy => policy
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
+
             app.UseHttpsRedirection();
+            app.MapControllers();
 
             app.UseAntiforgery();
 

@@ -1,0 +1,56 @@
+﻿@using StudentManagement.Shared
+@using StudentManagement.Client.Service
+@inject StudentService _studentService
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
+@if (StudentToEdit != null)
+{
+    <h4>Update Student</h4>
+
+    <EditForm Model="StudentToEdit" OnValidSubmit="HandleUpdate">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label>First Name:</label>
+            <InputText @bind-Value="StudentToEdit.FirstName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Last Name:</label>
+            <InputText @bind-Value="StudentToEdit.LastName" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Roll No:</label>
+            <InputNumber @bind-Value="StudentToEdit.RollNo" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label>Address:</label>
+            <InputText @bind-Value="StudentToEdit.Address" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Update</button>
+        <button class="btn btn-secondary ms-2" @onclick="Cancel">Cancel</button>
+    </EditForm>
+}
+
+@code {
+    [CascadingParameter] public Student? StudentToEdit { get; set; }
+    [Parameter] public EventCallback OnUpdateCompleted { get; set; }
+
+    private async Task HandleUpdate()
+    {
+        if (StudentToEdit != null)
+        {
+            await _studentService.UpdateStudent(StudentToEdit.StudentId,StudentToEdit);
+            await OnUpdateCompleted.InvokeAsync();
+        }
+    }
+
+    private async Task Cancel()
+    {
+        await OnUpdateCompleted.InvokeAsync();
+    }
+}
