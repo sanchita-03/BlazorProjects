@@ -1,4 +1,8 @@
+C:\BlazorProjects\StudentMangementBlazor\StudentManagement\StudentManagement.Client\wwwroot\js\recaptcha.js
+C:\BlazorProjects\StudentMangementBlazor\StudentManagement\StudentManagement.Client\wwwroot\css\loginStyle.css
 C:\BlazorProjects\StudentMangementBlazor\StudentManagement\StudentManagement.Client\wwwroot\appsettings.Development.json
 C:\BlazorProjects\StudentMangementBlazor\StudentManagement\StudentManagement.Client\wwwroot\appsettings.json
 wwwroot\appsettings.Development.json
 wwwroot\appsettings.json
+wwwroot\css\loginStyle.css
+wwwroot\js\recaptcha.js

@@ -18,14 +18,17 @@
                 @* <div class="row"> *@
                 <div >
                     <label>FirstName:</label>
-                    <InputText @bind-Value="student.FirstName" class="form-control" />
+                    <input @bind="student.FirstName" @bind:event="oninput" />  
                     @* <ValidationMessage For="@(() => student.Name)" /> *@
+                        <p>@student.FirstName</p>
                 </div>
 
                 <div >
-                    <label>LastName:</label>
-                    <InputText @bind-Value="student.LastName" class="form-control" />
-                    @* <ValidationMessage For="@(() => student.Email)" /> *@
+                    <InputText class="form-control"
+                               Value="@student.LastName"
+                               ValueChanged="OnNameChanged"
+                               ValueExpression="() => student.LastName" />
+
                 </div>
                 @* </div> *@
 
@@ -59,6 +62,15 @@
 @code {
     private Student student = new Student();
     private string? successMessage;
+
+    private string name = "";
+
+    private void OnNameChanged(string newValue)
+    {
+        name = newValue;
+        student.LastName = newValue; // Make sure to update the actual model too!
+        Console.WriteLine($"LastName changed to: {newValue}");
+    }
 
     private async Task HandleValidSubmit()
     {

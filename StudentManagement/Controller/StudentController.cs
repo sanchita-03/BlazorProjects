@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentManagement.Contract;
 using StudentManagement.Shared;
@@ -15,6 +16,7 @@ namespace StudentManagement.Controller
             _studentRepository = studentRepository;
         }
 
+        [Authorize]
         [HttpGet("GetAllStudents")]
         public async Task<IActionResult> GetAll()
         {

@@ -1,0 +1,65 @@
+﻿@page "/login"
+@using StudentManagement.Shared.Model
+@using StudentManagement.Client.Service
+@inject IJSRuntime JS
+@inject AuthService AuthService
+@inject NavigationManager _navigationManager
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
+
+<div class="login-container">
+    <div class="login-box">
+        <h2>🔐 Login to Your Account</h2>
+
+        <EditForm Model="loginModel" OnValidSubmit="LoginUser">
+            <div class="form-group">
+                <label for="email">📧 Email</label>
+                <InputText @bind-Value="loginModel.Email" id="email" class="form-control" placeholder="Enter email" />
+            </div>
+
+            <div class="form-group">
+                <label for="password">🔑 Password</label>
+                <InputText @bind-Value="loginModel.Password" id="password" type="password" class="form-control" placeholder="Enter password" />
+            </div>
+
+            <div class="form-group captcha-container">
+                <div id="captcha-container"></div>
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </EditForm>
+
+        <button @onclick="LogoutUser" class="btn-logout">Logout</button>
+    </div>
+</div>
+
+@code {
+    private LoginRequest loginModel = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("loadCaptcha"); // load captcha into #captcha-container
+        }
+    }
+
+    private async Task LoginUser()
+    {
+        var token = await JS.InvokeAsync<string>("getCaptchaToken");
+        loginModel.CaptchaToken = token;
+
+        var result = await AuthService.LoginAsync(loginModel);
+        Console.WriteLine(result ? "Login Successful" : "Login Failed");
+        if (result)
+        {
+            _navigationManager.NavigateTo("/student-dashboard");
+        }
+    }
+
+    private void LogoutUser()
+    {
+        AuthService.Logout();
+        Console.WriteLine("Logged out successfully");
+    }
+}

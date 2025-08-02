@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\appsettings.json"
     },
     {
+      "Id": "C:\\BlazorProjects\\StudentMangementBlazor\\StudentManagement\\StudentManagement.Client\\wwwroot\\css\\loginStyle.css",
+      "PackagePath": "staticwebassets\\css\\loginStyle.css"
+    },
+    {
+      "Id": "C:\\BlazorProjects\\StudentMangementBlazor\\StudentManagement\\StudentManagement.Client\\wwwroot\\js\\recaptcha.js",
+      "PackagePath": "staticwebassets\\js\\recaptcha.js"
+    },
+    {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.StudentManagement.Client.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
