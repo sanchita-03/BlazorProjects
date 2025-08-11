@@ -16,6 +16,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "StudentManagement.Controller.ImageCaptchaController",
+    "Method": "GetCaptchaImage",
+    "RelativePath": "api/ImageCaptcha/image",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "StudentManagement.Controller.ImageCaptchaController",
+    "Method": "VerifyCaptcha",
+    "RelativePath": "api/ImageCaptcha/verify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "StudentManagement.Shared.Model.CaptchaVerifyRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "StudentManagement.Controller.StudentController",
     "Method": "AddStudent",
     "RelativePath": "api/Student/AddStudent",

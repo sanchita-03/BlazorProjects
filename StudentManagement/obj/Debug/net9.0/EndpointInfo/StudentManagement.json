@@ -36,6 +36,49 @@
         }
       }
     },
+    "/api/ImageCaptcha/image": {
+      "get": {
+        "tags": [
+          "ImageCaptcha"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ImageCaptcha/verify": {
+      "post": {
+        "tags": [
+          "ImageCaptcha"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaptchaVerifyRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaptchaVerifyRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaptchaVerifyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Student/GetAllStudents": {
       "get": {
         "tags": [
@@ -170,6 +213,16 @@
   },
   "components": {
     "schemas": {
+      "CaptchaVerifyRequest": {
+        "type": "object",
+        "properties": {
+          "inputCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginRequest": {
         "type": "object",
         "properties": {
@@ -181,7 +234,7 @@
             "type": "string",
             "nullable": true
           },
-          "captchaToken": {
+          "inputCode": {
             "type": "string",
             "nullable": true
           }

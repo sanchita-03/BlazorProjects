@@ -12,12 +12,14 @@ namespace StudentManagement.Client.Service
         private readonly HttpClient _http;
         private readonly ILocalStorageService _localStorage;
         private readonly NavigationManager _navigationManager;
+        private readonly CustomAuthStateProvider _authStateProvider;
 
-        public AuthService(HttpClient http, ILocalStorageService localStorage,NavigationManager navigationManager)
+        public AuthService(HttpClient http, ILocalStorageService localStorage,NavigationManager navigationManager, CustomAuthStateProvider authStateProvider)
         {
             _http = http;
             _localStorage = localStorage;
             _navigationManager = navigationManager;
+            _authStateProvider = authStateProvider;
         }
 
         public async Task<bool> LoginAsync(LoginRequest request)
@@ -36,6 +38,7 @@ namespace StudentManagement.Client.Service
                     _http.DefaultRequestHeaders.Authorization =
                         new AuthenticationHeaderValue("Bearer", authResponse.Token);
 
+                    ((CustomAuthStateProvider)_authStateProvider).NotifyUserAuthentication(authResponse.Token);
                     return true;
                 }
             }
@@ -46,6 +49,7 @@ namespace StudentManagement.Client.Service
         {
             // Remove token from local storage
             _localStorage.RemoveItemAsync("authToken");
+            ((CustomAuthStateProvider)_authStateProvider).NotifyUserLogout();
 
             // Redirect to login page
             _navigationManager.NavigateTo("/login");

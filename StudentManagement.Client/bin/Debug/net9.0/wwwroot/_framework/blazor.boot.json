@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "StudentManagement.Client",
   "resources": {
-    "hash": "sha256-Lti+ALwKFcDfvB5zfsKBjgMLI7hmzWfA3eVZq8pWXZ4=",
+    "hash": "sha256-1qb1XajXQJH/jlg4HwvfTk0NOAD5okUWeELDzh1QXxQ=",
     "fingerprinting": {
       "Blazored.LocalStorage.12n6dz54qr.wasm": "Blazored.LocalStorage.wasm",
       "Microsoft.AspNetCore.Authentication.1jy2czmvcw.wasm": "Microsoft.AspNetCore.Authentication.wasm",
@@ -10,6 +10,7 @@
       "Microsoft.AspNetCore.Authentication.Core.m4evlbueww.wasm": "Microsoft.AspNetCore.Authentication.Core.wasm",
       "Microsoft.AspNetCore.Authorization.qe23mgxr71.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.flveird317.wasm": "Microsoft.AspNetCore.Components.wasm",
+      "Microsoft.AspNetCore.Components.Authorization.59e3gw4tnq.wasm": "Microsoft.AspNetCore.Components.Authorization.wasm",
       "Microsoft.AspNetCore.Components.Forms.thhw8cz9wu.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
       "Microsoft.AspNetCore.Components.Web.cx40wf47rk.wasm": "Microsoft.AspNetCore.Components.Web.wasm",
       "Microsoft.AspNetCore.Components.WebAssembly.5cygu8f0zf.wasm": "Microsoft.AspNetCore.Components.WebAssembly.wasm",
@@ -48,6 +49,10 @@
       "Microsoft.Extensions.Options.ConfigurationExtensions.zrlhdwvckr.wasm": "Microsoft.Extensions.Options.ConfigurationExtensions.wasm",
       "Microsoft.Extensions.Primitives.3sx0y6ui4u.wasm": "Microsoft.Extensions.Primitives.wasm",
       "Microsoft.Extensions.WebEncoders.5g1hzlp5lk.wasm": "Microsoft.Extensions.WebEncoders.wasm",
+      "Microsoft.IdentityModel.Abstractions.xspeei5lg5.wasm": "Microsoft.IdentityModel.Abstractions.wasm",
+      "Microsoft.IdentityModel.JsonWebTokens.va83i4qh6u.wasm": "Microsoft.IdentityModel.JsonWebTokens.wasm",
+      "Microsoft.IdentityModel.Logging.h6whocrau2.wasm": "Microsoft.IdentityModel.Logging.wasm",
+      "Microsoft.IdentityModel.Tokens.072vbp3dlu.wasm": "Microsoft.IdentityModel.Tokens.wasm",
       "Microsoft.JSInterop.sk08br83jz.wasm": "Microsoft.JSInterop.wasm",
       "Microsoft.JSInterop.WebAssembly.fkdz83fr0b.wasm": "Microsoft.JSInterop.WebAssembly.wasm",
       "Microsoft.Net.Http.Headers.vhfw8f9f40.wasm": "Microsoft.Net.Http.Headers.wasm",
@@ -229,10 +234,10 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "StudentManagement.Shared.a954ty1qgc.wasm": "StudentManagement.Shared.wasm",
-      "StudentManagement.Shared.pv656u90p3.pdb": "StudentManagement.Shared.pdb",
-      "StudentManagement.Client.ok0qmpvl79.wasm": "StudentManagement.Client.wasm",
-      "StudentManagement.Client.yjptcmww2e.pdb": "StudentManagement.Client.pdb"
+      "StudentManagement.Shared.kbibpx0xiq.wasm": "StudentManagement.Shared.wasm",
+      "StudentManagement.Shared.9iqkp0wmgh.pdb": "StudentManagement.Shared.pdb",
+      "StudentManagement.Client.grtrzlt5hn.wasm": "StudentManagement.Client.wasm",
+      "StudentManagement.Client.p6whott6mn.pdb": "StudentManagement.Client.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.hmanx9razn.js": "sha256-d7UNSArplVrX3arY2Kmhxp1wN79ng8hLqIBrkiQ9Gbo="
@@ -260,6 +265,7 @@
       "Microsoft.AspNetCore.Authentication.Core.m4evlbueww.wasm": "sha256-RvrgkuvCzUhIR14zDxsUqVpYzujZOdJHMJ36UJgBMIg=",
       "Microsoft.AspNetCore.Authorization.qe23mgxr71.wasm": "sha256-8hTdrmR59LAJRrDu8LLRlNn641/iWIAjzG1GcCsAhR0=",
       "Microsoft.AspNetCore.Components.flveird317.wasm": "sha256-jTpt9y+Fzn6JeLtdS0PwW+fzVCyw2aJ8kFuDQAMFdcE=",
+      "Microsoft.AspNetCore.Components.Authorization.59e3gw4tnq.wasm": "sha256-6XrZ1W8Za6EljxQ285vEew8VxDJP4VAluHQxPyqb60A=",
       "Microsoft.AspNetCore.Components.Forms.thhw8cz9wu.wasm": "sha256-b7dkg8tMPT2fEN10cgvga1DuG4BElomG5PE4E8Bv5B8=",
       "Microsoft.AspNetCore.Components.Web.cx40wf47rk.wasm": "sha256-ECvB9e5XSMH23qRbFlUaMQ7yi5lypoSEKbSDFgPrgfw=",
       "Microsoft.AspNetCore.Components.WebAssembly.5cygu8f0zf.wasm": "sha256-KwD9Lhu5DlaqdB2ceYX2LavpwSIAS5H07ZPT2jVbiu4=",
@@ -298,6 +304,10 @@
       "Microsoft.Extensions.Options.ConfigurationExtensions.zrlhdwvckr.wasm": "sha256-gdpzuN2ZxR7wqJNxLYGn7PeAyYzut6RBoUf8xEZqUs0=",
       "Microsoft.Extensions.Primitives.3sx0y6ui4u.wasm": "sha256-A0WIty9B3GNUBtsykg0eb3kD47r0/Cpfk8q1Ei8ECrc=",
       "Microsoft.Extensions.WebEncoders.5g1hzlp5lk.wasm": "sha256-a5cONIoRz1DZ7wOayrQN13v0jyRJtn2tHDBBFwPmMdo=",
+      "Microsoft.IdentityModel.Abstractions.xspeei5lg5.wasm": "sha256-IWBLY7JDNUILMHE88kkuFUTcy+CkGUQcPAItSaays5I=",
+      "Microsoft.IdentityModel.JsonWebTokens.va83i4qh6u.wasm": "sha256-xw7yZenGVntNBucdds/X+3FOGu1RVO6PbsFffBFiexg=",
+      "Microsoft.IdentityModel.Logging.h6whocrau2.wasm": "sha256-KbUuTfiVSc0+f43jYq15Gf7xzFowscdMVW6oh338TQk=",
+      "Microsoft.IdentityModel.Tokens.072vbp3dlu.wasm": "sha256-3HvtEN8Tg0lxk/IHWiLsP5R7KS8I7vC9IRzPOmEpdQc=",
       "Microsoft.JSInterop.sk08br83jz.wasm": "sha256-FNS+xvA0GFiM2CVWHljv47AO+crkl0V7XiidkkMbVSw=",
       "Microsoft.JSInterop.WebAssembly.fkdz83fr0b.wasm": "sha256-kSwbIGuYmzrEilFXnLY8mKBXXFQtVXKAF/Qa323+Fnk=",
       "Microsoft.Net.Http.Headers.vhfw8f9f40.wasm": "sha256-jfXK+cfJd/PteHB+5Bay/NDY9b9VLvVw6G/Bm262Lpo=",
@@ -470,12 +480,12 @@
       "WindowsBase.377bly7twj.wasm": "sha256-0VmBdMjdc0nZGHDSfaGirT6y3mJTM0qx8eqCUC/rpiE=",
       "mscorlib.o0184ey5ia.wasm": "sha256-2GxNKZQJVJvYMUxSTuXa5V2qxawSMMHZtwG33SKVCZU=",
       "netstandard.hb3h2rr8mk.wasm": "sha256-DWn9+RH/ElZQ6imlYqVwZvir1KTzNwY18AzGmnyiymU=",
-      "StudentManagement.Shared.a954ty1qgc.wasm": "sha256-Ynfapdq/5AeXctV0Fl6jNlRxA94VtaWDbux7pq5ddHU=",
-      "StudentManagement.Client.ok0qmpvl79.wasm": "sha256-mHBGeyFsDv2iqs/QqsO/gdm2UxrNvvb1/ORUyAtBuEU="
+      "StudentManagement.Shared.kbibpx0xiq.wasm": "sha256-gE7Yh6tcpxMBjAe6R5uA4IGDTL1PX2x8lXZau/DM2Fc=",
+      "StudentManagement.Client.grtrzlt5hn.wasm": "sha256-bFadmCPnRQUHV5qMOdCkrvaoMUWm9up72IgyUsygd0A="
     },
     "pdb": {
-      "StudentManagement.Shared.pv656u90p3.pdb": "sha256-679mROnHwRCbWUm33fKUdQzP506PT5TQs4v1LSmWyFQ=",
-      "StudentManagement.Client.yjptcmww2e.pdb": "sha256-nsp2aboio5gaDB/BN1wKyi6XG1ZezUEQW0+XXgISo7E="
+      "StudentManagement.Shared.9iqkp0wmgh.pdb": "sha256-MfyerQ42pjp1613pJWSfLy8KGR6PNpS/4TvAQ9JcbPU=",
+      "StudentManagement.Client.p6whott6mn.pdb": "sha256-z0bbetGwWYb3WLhA6bjn4OCQQRXviB5yjiOQzE3h+FE="
     }
   },
   "cacheBootResources": true,

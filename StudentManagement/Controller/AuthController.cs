@@ -17,23 +17,30 @@ namespace StudentManagement.Controller
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _config;
         private readonly RecaptchaService _recaptchaService;
+        private readonly ImageCaptchaGenerator _captchaGenerator;
 
-        public AuthController(UserManager<IdentityUser> userManager, IConfiguration config, RecaptchaService recaptchaService)
+        public AuthController(UserManager<IdentityUser> userManager, IConfiguration config, RecaptchaService recaptchaService, ImageCaptchaGenerator captchaGenerator)
         {
             _userManager = userManager;
             _config = config;
             _recaptchaService = recaptchaService;
+            _captchaGenerator = captchaGenerator;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            // ✅ Step 1: Verify CAPTCHA
-            var captchaValid = await _recaptchaService.VerifyTokenAsync(request.CaptchaToken);
+            //Step 1: Verify CAPTCHA Iam Not Bot
+            //var captchaValid = await _recaptchaService.VerifyTokenAsync(request.CaptchaToken);
+            //if (!captchaValid)
+            //    return Unauthorized(new AuthResponse { IsSuccess = false, Message = "Captcha validation failed." });
+
+            //Step 1: Image Text Captcha
+            var captchaValid = _captchaGenerator.VerifyCaptchaCode(HttpContext, request.InputCode);
             if (!captchaValid)
                 return Unauthorized(new AuthResponse { IsSuccess = false, Message = "Captcha validation failed." });
 
-            // ✅ Step 2: Validate user credentials
+            //Step 2: Validate user credentials
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user != null && await _userManager.CheckPasswordAsync(user, request.Password))
             {

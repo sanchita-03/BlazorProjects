@@ -3,6 +3,7 @@
 @using StudentManagement.Client.Service
 @inject IJSRuntime JS
 @inject AuthService AuthService
+@inject ImageCaptchaService imageCaptchaService
 @inject NavigationManager _navigationManager
 @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
@@ -22,9 +23,19 @@
                 <InputText @bind-Value="loginModel.Password" id="password" type="password" class="form-control" placeholder="Enter password" />
             </div>
 
-            <div class="form-group captcha-container">
-                <div id="captcha-container"></div>
+            @* <div class="form-group captcha-container"> *@
+            @*     <div id="captcha-container"></div> *@
+            @* </div> *@
+            <div class="form-group">
+                <label>Captcha</label>
+                <img src="@captchaImage" @onclick="ReloadCaptcha" alt="Captcha" style="cursor:pointer; border:1px solid #ccc;" />
             </div>
+
+            <div class="form-group">
+                <label for="captchaInput">Enter Captcha</label>
+                <InputText @bind-Value="loginModel.InputCode" id="captchaInput" class="form-control" placeholder="Enter captcha" />
+            </div>
+
 
             <button type="submit" class="btn-login">Login</button>
         </EditForm>
@@ -35,19 +46,57 @@
 
 @code {
     private LoginRequest loginModel = new();
+    private string captchaImage;
+    private Timer? captchaRefreshTimer;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("loadCaptcha"); // load captcha into #captcha-container
-        }
+        await LoadCaptchaImage();
+        captchaRefreshTimer = new Timer(
+            async _ => await ReloadCaptcha(),
+            null,
+            TimeSpan.FromMinutes(3),
+            TimeSpan.FromMinutes(3)
+        );
     }
+    private async Task LoadCaptchaImage(){
+        var result = await imageCaptchaService.GetCaptchaImageAsync();
+        string base64 = Convert.ToBase64String(result);
+        captchaImage = $"data:image/png;base64,{base64}";
+    }
+
+    private async Task ReloadCaptcha()
+    {
+        captchaRefreshTimer.Dispose();
+        await LoadCaptchaImage();
+        captchaRefreshTimer = new Timer(
+            async _ => await ReloadCaptcha(),
+            null,
+            TimeSpan.FromMinutes(3),
+            TimeSpan.FromMinutes(3)
+        );
+
+    }
+
+    // private async Task RelCaptcha()
+    // {
+    //     var result = await imageCaptchaService.GetCaptchaImageAsync();
+    //     string base64 = Convert.ToBase64String(result);
+    //     captchaImage = $"data:image/png;base64,{base64}";
+    // }
+
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         await JS.InvokeVoidAsync("loadCaptcha"); load captcha into #captcha-container
+    //     }
+    // }
 
     private async Task LoginUser()
     {
-        var token = await JS.InvokeAsync<string>("getCaptchaToken");
-        loginModel.CaptchaToken = token;
+        // var token = await JS.InvokeAsync<string>("getCaptchaToken");
+        // loginModel.CaptchaToken = token;
 
         var result = await AuthService.LoginAsync(loginModel);
         Console.WriteLine(result ? "Login Successful" : "Login Failed");
@@ -56,6 +105,8 @@
             _navigationManager.NavigateTo("/student-dashboard");
         }
     }
+
+    
 
     private void LogoutUser()
     {
